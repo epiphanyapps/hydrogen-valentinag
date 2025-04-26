@@ -14,3 +14,6 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
+  # 💥 Add this to tell Amplify: do NOT try to run npm start
+  start:
+    commands: []

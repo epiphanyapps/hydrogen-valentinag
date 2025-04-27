@@ -17,6 +17,7 @@ export async function loader(args: LoaderFunctionArgs) {
 
   // Await the critical data required to render initial state of the page
   const criticalData = await loadCriticalData(args);
+
   console.log('criticalData', criticalData);
   return {...deferredData, ...criticalData};
 }
@@ -27,11 +28,11 @@ export async function loader(args: LoaderFunctionArgs) {
  */
 async function loadCriticalData({context}: LoaderFunctionArgs) {
   const [{collections}] = await Promise.all([
-    console.log('context.storefront', context.storefront),
     context.storefront.query(FEATURED_COLLECTION_QUERY),
     // Add other queries here, so that they are loaded in parallel
   ]);
 
+  console.log('collections', collections);
   return {
     featuredCollection: collections.nodes[0],
   };
